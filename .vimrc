@@ -35,7 +35,7 @@ autocmd BufReadPost *
 set whichwrap=b,s			" backspace and space to wrap between lines
 set listchars=tab:>-,trail:-		" show tabs as >--- and trailing spaces as - with set list option
 
-setlocal spell spelllang=ru_yo,en_us	" set spellchecking
+setlocal spelllang=ru_yo,en_us	" set spellchecking
 " set keymap=russian-jcukenwin
 " set iminsert=0
 " set imsearch=0
