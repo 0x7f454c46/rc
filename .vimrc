@@ -12,6 +12,12 @@ if isdirectory('/tmp/vim-swp') == 0
 	:silent !mkdir -p /tmp/vim-swp > /dev/null 2>&1
 endif
 set directory=/tmp/vim-swp//
+if exists("+undofile")
+	if isdirectory('/tmp/vim-undo') == 0
+		:silent !mkdir -p /tmp/vim-undo > /dev/null 2>&1
+	endif
+	set undodir=/tmp/vim-undo//
+endif
 set history=100				" commands and search history size
 set ruler				" show the current cursor position in the lower right corner
 set showcmd				" display an incomplete command in lower right corner
