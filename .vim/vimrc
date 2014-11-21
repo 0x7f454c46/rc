@@ -52,8 +52,6 @@ if &t_Co > 2 || has("gui_running")	" if colors available
 	set hlsearch
 endif
 
-filetype plugin indent on		" indent by filetype
-
 " This is used after reading any file.
 " Checks if the '" mark is defined, and jumps to it if so.
 autocmd BufReadPost *
@@ -75,7 +73,14 @@ setlocal spelllang=ru_yo,en_us	" set spellchecking
 
 set cc=81
 
+" disable filetype for vundle init
+filetype off
+
 " Vundle clone it with
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
+" indent by filetype
+filetype plugin indent on
+
