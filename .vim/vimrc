@@ -39,6 +39,7 @@ set incsearch
 " Don't use Ex mode, use Q for formatting
 map Q gq
 set relativenumber
+set number
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
