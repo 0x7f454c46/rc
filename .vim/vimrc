@@ -28,6 +28,9 @@ if isdirectory('/tmp/vim-swp') == 0
 endif
 set directory=/tmp/vim-swp//
 
+" set .vim directory to viminfo file
+set viminfo+=n~/.vim/viminfo
+
 " commands and search history size
 set history=1000
 " show the current cursor position in the lower right corner
