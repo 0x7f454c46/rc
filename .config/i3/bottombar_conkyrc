@@ -1,0 +1,18 @@
+background no
+cpu_avg_samples 5
+format_human_readable yes
+net_avg_samples 5
+out_to_console yes
+out_to_x no
+override_utf8_locale yes
+short_units no
+temperature_unit celsius
+text_buffer_size 2048
+top_cpu_separate no
+total_run_times 0
+update_interval 5.0
+update_interval_on_battery 5
+uppercase no
+use_spacer none
+TEXT
+${if_mounted /mnt}^ca(1, echo eject)^i(/usr/share/icons/stlarch_icons/select1.xbm)^ca() ${endif}^i(/usr/share/icons/stlarch_icons/downarrow3.xbm)${totaldown wlan0} ^i(/usr/share/icons/stlarch_icons/uparrow3.xbm)${totalup wlan0} ${if_match 80<${memperc}}^fg(\#cf204a)${else}${if_match 60<${memperc}}^fg(\#cf700d)${else}^fg(\#7fad0d)${endif}${endif}^i(/usr/share/icons/stlarch_icons/mem1.xbm)${memperc}%(${mem}/${memmax})^fg() ^i(/usr/share/icons/stlarch_icons/home1.xbm)${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ UUWW cloud_cover 30} ^i(/usr/share/icons/stlarch_icons/temp3.xbm)${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ UUWW humidity 30}% ^i(/usr/share/icons/stlarch_icons/temp5.xbm)${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ UUWW temperature 30}°C ^i(/usr/share/icons/stlarch_icons/clock1.xbm)^ca(1, xterm -e 'cal --year && read -n 1')${time %A %T %F}^ca()
