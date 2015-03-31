@@ -1,0 +1,14 @@
+Xft.dpi: 96
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.antialias: true
+Xft.rgba: rgb
+
+dzen2.font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.background: black
+dzen2.foreground: #858585
+
+xterm*faceName: terminus:pixelsize=18
+xterm*saveLines: 2048
+xterm*scrollBar: off
+xterm*rightScrollBar: off
