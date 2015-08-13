@@ -29,14 +29,8 @@ unset WALLPAPER
 
 DEFAULT_SESSION=i3
 case $1 in
-wmii)
-	exec wmii
-	;;
 i3)
 	exec i3
-	;;
-awesome)
-	exec awesome
 	;;
 *)
 	exec "$DEFAULT_SESSION"
