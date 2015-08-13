@@ -18,7 +18,7 @@ export BROWSER=dwb
 export PAGER="less"
 
 # 'pkgfile' package (.zsh)
-[[ -f /usr/local/share/sounds/intro/supermario_pipe.wav ]] &&
+[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] &&
 	source /usr/share/doc/pkgfile/command-not-found.bash
 
 ## Less options
