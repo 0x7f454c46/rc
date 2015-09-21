@@ -4,36 +4,48 @@
 #
 # Executed by startx (run your window manager from here)
 
-USERRESOURCES=$HOME/.Xresources
-USERMODMAP=$HOME/.Xmodmap
-SYSRESOURCES=/etc/X11/xinit/.Xresources
-SYSMODMAP=/etc/X11/xinit/.Xmodmap
+MACHINE_NAME=$(uname -n)
+NOTEBOOK_NAME=jimi
+
+# machine differences
+
+if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
+XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=18"
+else
+XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=20"
+fi
+
+# wallpapers settings
 
 WALLPAPER_PATH="pic/wall/"
-# WALLPAPER="1.jpg"
+# or set explicitly with WALLPAPER="1.jpg"
 WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
 # Xresources theme from ~/.config/Xresources
 XTHEME="best/black_purple"
 
+# do not want it @ home
 mv .Xauthority /tmp/
 export XAUTHORITY=/tmp/.Xauthority
 
-# merge in defaults and keymaps
+# merge xresources in
+xrdb -merge <<EOF
+Xft.dpi: 96
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.antialias: true
+Xft.rgba: rgb
 
-[[ -f $SYSRESOURCES ]] &&
-	xrdb -merge $SYSRESOURCES
+dzen2.font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.background: black
+dzen2.foreground: #858585
 
-[[ -f $SYSMODMAP ]] &&
-	xmodmap $SYSMODMAP
+${XRESOURSES_XTERM_FONT}
+xterm*saveLines: 2048
+xterm*scrollBar: off
+xterm*rightScrollBar: off
+EOF
 
-[[ -f "$USERRESOURCES" ]] &&
-	xrdb -merge "$USERRESOURCES"
-
-[[ -f "$USERMODMAP" ]] &&
-	xmodmap "$USERMODMAP"
-
-# start some nice programs
-
+# start some awful programs dbus/systemd sessions
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
@@ -41,12 +53,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources &&
+[[ -f ~/.config/Xresources/${XTHEME} ]] &&
 	xrdb -merge ~/.config/Xresources/${XTHEME} &
+
 [[ -f "${WALLPAPER_PATH}${WALLPAPER}" ]] &&
 	hsetroot -fill "${WALLPAPER_PATH}${WALLPAPER}"
-unset WALLPAPER_PATH
-unset WALLPAPER
 
 DEFAULT_SESSION=i3
 case $1 in

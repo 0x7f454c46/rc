@@ -11,7 +11,8 @@ alias mount.vfat='mount -t vfat -o iocharset=utf8,rw,gid=100'
 # leave zsh default later
 PS1='[\u@\h \W]\$ '
 
-HISTSIZE=10000
+HISTSIZE=100000
+HISTFILESIZE=100000
 export EDITOR=vim
 export SUDO_EDITOR=vim
 export BROWSER=dwb
@@ -36,7 +37,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export LESSHISTFILE=/tmp/lesshst
 
 ## set console font in tty
-# TODO: remove, when systemd start working as init system, not a web-server
+# TODO: remove, when systemd start working as init system, not as a web-server
 if [[ -z $DISPLAY ]] ; then
 	setfont ter-u16b
 fi
