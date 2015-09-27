@@ -57,5 +57,5 @@ shopt -s checkwinsize
 	aplay /usr/local/share/sounds/intro/supermario_pipe.wav 2>/dev/null &
 disown
 
-[[ -f ~/code/scripts/.bash_export ]] &&
-	source ~/code/scripts/.bash_export
+[[ -f ~/code/scripts/.bash_export.sh ]] &&
+	source ~/code/scripts/.bash_export.sh

@@ -11,8 +11,10 @@ NOTEBOOK_NAME=jimi
 
 if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
 XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=18"
+XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #555953"
 else
 XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=20"
+XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #785b85"
 fi
 
 # wallpapers settings
@@ -40,6 +42,7 @@ dzen2.background: black
 dzen2.foreground: #858585
 
 ${XRESOURSES_XTERM_FONT}
+${XRESOURSES_XTERM_CURSOR_COLOR}
 xterm*saveLines: 2048
 xterm*scrollBar: off
 xterm*rightScrollBar: off
