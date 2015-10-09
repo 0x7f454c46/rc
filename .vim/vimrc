@@ -73,9 +73,16 @@ setlocal spelllang=ru_yo,en_us	" set spellchecking
 " set iminsert=0
 " set imsearch=0
 " avoid switching between keyboards in normal mode
-:set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчняэёжб;abcdefghijklmnopqrstuvwxyz'`\\\;\\\,
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчняэёжб;abcdefghijklmnopqrstuvwxyz'`\\\;\\\,
 
 set cc=81
+
+" search with smart case: ignoring Upper-case if searching with lower-case
+" string, but not backwards
+set ignorecase
+set smartcase
+
+let c_space_errors = 1
 
 " disable filetype for vundle init
 filetype off
