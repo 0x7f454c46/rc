@@ -59,3 +59,6 @@ disown
 
 [[ -f ~/code/scripts/.bash_export.sh ]] &&
 	source ~/code/scripts/.bash_export.sh
+
+[[ -f ~/tools/toolchain/bash_exports.sh ]] &&
+	source ~/tools/toolchain/bash_exports.sh
