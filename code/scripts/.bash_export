@@ -1,6 +1,0 @@
-# file sould be exported from ~/.bashrc
-# pipes 4fun
-function pipes()
-{
-	~/code/scripts/pipes.sh -p3 -r6000
-}

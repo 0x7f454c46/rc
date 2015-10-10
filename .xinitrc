@@ -4,6 +4,10 @@
 #
 # Executed by startx (run your window manager from here)
 
+# to use script commands here, i.e: set_wallpaper
+[[ -f ~/code/scripts/bash_export.sh ]] &&
+	source ~/code/scripts/bash_export.sh
+
 MACHINE_NAME=$(uname -n)
 NOTEBOOK_NAME=jimi
 
@@ -63,7 +67,7 @@ fi
 	xrdb -merge ~/.config/Xresources/${XTHEME} &
 
 [[ -f "${WALLPAPER_PATH}${WALLPAPER}" ]] &&
-	hsetroot -fill "${WALLPAPER_PATH}${WALLPAPER}"
+	set_wallpaper "${WALLPAPER_PATH}${WALLPAPER}"
 
 DEFAULT_SESSION=i3
 case $1 in
