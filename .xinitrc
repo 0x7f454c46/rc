@@ -13,10 +13,13 @@ if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
 XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=18"
 XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #555953"
 I3_CONFIG_DEPENDED="~/.config/i3/config.notebook"
+# Xresources theme from ~/.config/Xresources
+XTHEME="best/black_purple"
 else
 XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=20"
 XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #785b85"
 I3_CONFIG_DEPENDED="~/.config/i3/config.desktop"
+XTHEME="best/softlaziness"
 fi
 
 # wallpapers settings
@@ -24,8 +27,6 @@ fi
 WALLPAPER_PATH="pic/wall/"
 # or set explicitly with WALLPAPER="1.jpg"
 WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
-# Xresources theme from ~/.config/Xresources
-XTHEME="best/black_purple"
 
 # do not want it @ home
 mv .Xauthority /tmp/
