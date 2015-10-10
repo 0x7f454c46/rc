@@ -12,9 +12,11 @@ NOTEBOOK_NAME=jimi
 if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
 XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=18"
 XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #555953"
+I3_CONFIG_DEPENDED="~/.config/i3/config.notebook"
 else
 XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=20"
 XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #785b85"
+I3_CONFIG_DEPENDED="~/.config/i3/config.desktop"
 fi
 
 # wallpapers settings
@@ -65,7 +67,11 @@ fi
 DEFAULT_SESSION=i3
 case $1 in
 i3)
-	exec i3
+	I3_TMP_CFG="/tmp/i3.config.$(whoami)"
+
+	cp "${I3_CONFIG_DEPENDED}" "${I3_TMP_CFG}"
+	cat ~/.config/i3/config >> "${I3_TMP_CFG}"
+	exec i3 -c "${I3_TMP_CFG}"
 	;;
 *)
 	exec "$DEFAULT_SESSION"

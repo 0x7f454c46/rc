@@ -1,0 +1,31 @@
+# Cmd key as mod
+set $mod Mod4
+
+# class			border	backgr.	text	indicator
+client.focused		#785b85	#785b85	#ffffff	#785b85
+# client.focused_inactive	#333333	#5f676a	#ffffff	#484e50
+# client.unfocused	#333333	#222222	#888888	#292d2e
+# client.urgent		#2f343a	#900000	#ffffff	#900000
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec cat ~/.config/dmenu/commands | \
+	dmenu -fn "-misc-fixed-*-*-*-*-16-*-*-*-*-*-*-*" \
+	-nb \#000000 -nf \#858585 -sb \#785b85 -sf \#ffffff | \
+	xargs -0 bash -c
+
+exec conky -c ~/.config/i3/bars/notebook.bottombar_conkyrc | \
+	dzen2 -dock -p -ta r -y -1 -e 'button3=;'
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	status_command i3status -c ~/.config/i3/bars/notebook.topbar_i3status.conf
+	position top
+	font xft: terminus 10
+	workspace_buttons yes
+	tray_output primary
+	colors {
+		focused_workspace #b589c9 #785b85 #ffffff
+		statusline #858585
+	}
+}
