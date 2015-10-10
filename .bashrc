@@ -13,6 +13,7 @@ PS1='[\u@\h \W]\$ '
 
 HISTSIZE=100000
 HISTFILESIZE=100000
+HISTCONTROL=erasedups
 export EDITOR=vim
 export SUDO_EDITOR=vim
 export BROWSER=dwb
