@@ -1,8 +1,10 @@
 " Use Vim defaults instead of 100% vi compatibility
 set nocompatible
+
 " delete the white space at start of the line,
 " a line break and the character before Ins mode started
 set backspace=indent,eol,start
+
 if has("vms")
 	" do not keep a backup file, use versions instead
 	set nobackup
@@ -30,7 +32,6 @@ set directory=/tmp/vim-swp//
 
 " set .vim directory to viminfo file
 set viminfo+=n~/.vim/viminfo
-
 " commands and search history size
 set history=1000
 " show the current cursor position in the lower right corner
@@ -39,8 +40,10 @@ set ruler
 set showcmd
 " color search results while typing search query
 set incsearch
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
 set relativenumber
 set number
 
@@ -67,18 +70,15 @@ autocmd BufReadPost *
 set whichwrap=b,s
 " show tabs as >--- and trailing spaces as - with set list option
 set listchars=tab:>-,trail:-
+" set spellchecking
+setlocal spelllang=ru_yo,en_us
 
-setlocal spelllang=ru_yo,en_us	" set spellchecking
-" set keymap=russian-jcukenwin
-" set iminsert=0
-" set imsearch=0
 " avoid switching between keyboards in normal mode
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчняэёжб;abcdefghijklmnopqrstuvwxyz'`\\\;\\\,
 
 set cc=81
 
-" search with smart case: ignoring Upper-case if searching with lower-case
-" string, but not backwards
+" search with smart case: find uppercase words with lowercase pattern
 set ignorecase
 set smartcase
 
