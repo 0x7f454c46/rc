@@ -1,8 +1,6 @@
 rc
 ==
 
-My config files.
-
 ###### Before start with vim, do following:
 ```
 mkdir -p ~/.vim/bundle/vundle
