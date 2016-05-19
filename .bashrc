@@ -19,6 +19,9 @@ export SUDO_EDITOR=vim
 export BROWSER=dwb
 export PAGER="less"
 
+# fix for urxvt, which is not known by ssh nodes in termcap
+alias ssh="TERM=xterm ssh"
+
 # 'pkgfile' package (.zsh)
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] &&
 	source /usr/share/doc/pkgfile/command-not-found.bash
