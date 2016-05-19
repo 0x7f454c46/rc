@@ -52,6 +52,8 @@ fi
 
 case $1 in
 i3)
+	# Note, that this way re-read config in i3 will not work.
+	# FIXME: add this to generic i3 config (read docs).
 	I3_TMP="/tmp/i3.config.$(whoami)" # per-user
 
 	[[ -f "${I3_NODE_CONFIG}" ]] &&
