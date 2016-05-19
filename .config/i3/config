@@ -128,6 +128,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# goto (number of the last free workspace) + 1
 bindsym $mod+Tab exec "i3-msg workspace $(($(i3-msg -t get_workspaces | tr , '\n' | sed -n 's/.*num\\":\([0-9]\)/\1/p' | sort -rn | head -1) + 1))"
 
 # resize window (you can also use the mouse for that)
@@ -158,4 +159,8 @@ bindsym $mod+r mode "resize"
 
 # notifications daemon
 exec dunst
+# screen autolocking
+exec xautolock -time 7 -detectsleep			\
+	-locker "i3lock --dpms --show-failed-attempts"	\
+	-notify 30 notifier "notify-send -u critical -t 10000 -- 'LOCKING'"
 bindsym $mod+Shift+equal exec i3lock -f -d
