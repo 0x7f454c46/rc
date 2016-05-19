@@ -8,7 +8,6 @@
 alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias mount.vfat='mount -t vfat -o iocharset=utf8,rw,gid=100'
-# leave zsh default later
 PS1='[\u@\h \W]\$ '
 
 HISTSIZE=100000
@@ -29,7 +28,6 @@ alias ssh="TERM=xterm ssh"
 ## Less options
 export LESS="--quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS"
 export LESS="${LESS} --chop-long-lines --no-init"
-# 
 ## Less colored output
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
