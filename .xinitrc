@@ -5,9 +5,14 @@
 # Executed by startx (run your window manager from here)
 
 # to use script commands here, i.e: set_wallpaper
-[[ -f ~/code/scripts/bash_export.sh ]] &&
-	source ~/code/scripts/bash_export.sh
+[[ -f ~/.config/shell/include ]] &&
+	source ~/.config/shell/include
 
+# TODO: use it (xrdb -merge)
+SYSRESOURCES=/etc/X11/xinit/.Xresources
+SYSMODMAP=/etc/X11/xinit/.Xmodmap
+
+# TODO: move it to .config/_node/* (split this)
 MACHINE_NAME=$(uname -n)
 NOTEBOOK_NAME=jimi
 
@@ -20,14 +25,13 @@ I3_CONFIG_DEPENDED="~/.config/i3/config.notebook"
 # Xresources theme from ~/.config/Xresources
 XTHEME="best/black_purple"
 else
-XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=20"
+XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=22"
 XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #785b85"
 I3_CONFIG_DEPENDED="~/.config/i3/config.desktop"
 XTHEME="best/softlaziness"
 fi
 
 # wallpapers settings
-
 WALLPAPER_PATH="pic/wall/"
 # or set explicitly with WALLPAPER="1.jpg"
 WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
@@ -53,6 +57,27 @@ ${XRESOURSES_XTERM_CURSOR_COLOR}
 xterm*saveLines: 2048
 xterm*scrollBar: off
 xterm*rightScrollBar: off
+
+! True: specify that jump scrolling should be used. When receiving lots of lines, urx
+URxvt*jumpScroll:              false
+URxvt*skipScroll:              false
+URxvt*font:                    -*-terminus-medium-*-*-*-22-*-*-*-*-*-*-*
+URxvt*scrollBar:               false
+URxvt*saveLines:               65535
+URxvt*cursorBlink:             true
+URxvt.keysym.Control-Up:       \033[1;5A
+URxvt.keysym.Control-Down:     \033[1;5B
+URxvt.keysym.Control-Left:     \033[1;5D
+URxvt.keysym.Control-Right:    \033[1;5C
+URxvt.scrollTtyOutput:         false
+URxvt.scrollTtyKeypress:       true
+URxvt.scrollWithBuffer:                true
+
+! Set scrollbar style to rxvt, plain, next or xterm. plain is the authors favourite.
+! URxvt*scrollstyle: mode
+
+! Set the scrollbar width in pixels.
+! URxvt*thickness: number
 EOF
 
 # start some awful programs dbus/systemd sessions

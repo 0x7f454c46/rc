@@ -1,25 +1,8 @@
-# file to be exported from ~/.bashrc
-# pipes 4fun
+#!/bin/bash
+# This should be included from bash scripts
 
-# machine-dependence
 MACHINE_NAME=$(uname -n)
 NOTEBOOK_NAME=jimi
-
-function pipes()
-{
-	~/code/scripts/pipes.sh -p3 -r6000
-}
-
-function invaiders()
-{
-	~/code/scripts/invaiders.sh
-}
-
-function mount_smb()
-{
-	mkdir -p /tmp/samba/
-	smbnetfs -o direct_io,readdir_ino /tmp/samba/
-}
 
 if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
 then
@@ -37,3 +20,19 @@ function set_wallpaper()
 	rm "$first" "$second"
 }
 fi
+
+function pipes()
+{
+	~/code/scripts/pipes.sh -p3 -r6000
+}
+
+function invaiders()
+{
+	~/code/scripts/invaiders.sh
+}
+
+function mount_smb()
+{
+	mkdir -p /tmp/samba/
+	smbnetfs -o direct_io,readdir_ino /tmp/samba/
+}
