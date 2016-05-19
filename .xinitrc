@@ -56,7 +56,7 @@ i3)
 	# FIXME: add this to generic i3 config (read docs).
 	I3_TMP="/tmp/i3.config.$(whoami)" # per-user
 
-	echo > I3_TMP
+	echo > "${I3_TMP}"
 	[[ -f "${I3_NODE_CONFIG}" ]] &&
 		cat "${I3_NODE_CONFIG}" >> "${I3_TMP}"
 	[[ -f "${I3_CONFIG}" ]] &&
