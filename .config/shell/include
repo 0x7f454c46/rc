@@ -1,8 +1,12 @@
 #!/bin/bash
 # This should be included from bash scripts
 
+# TODO: remove it
 MACHINE_NAME=$(uname -n)
 NOTEBOOK_NAME=jimi
+
+NODE_NAME=$(cat ~/.config/.node_name)
+NODE_PATH=~/.config/_node/${NODE_NAME}
 
 if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
 then
@@ -36,3 +40,4 @@ function mount_smb()
 	mkdir -p /tmp/samba/
 	smbnetfs -o direct_io,readdir_ino /tmp/samba/
 }
+

@@ -8,77 +8,24 @@
 [[ -f ~/.config/shell/include ]] &&
 	source ~/.config/shell/include
 
-# TODO: use it (xrdb -merge)
-SYSRESOURCES=/etc/X11/xinit/.Xresources
-SYSMODMAP=/etc/X11/xinit/.Xmodmap
-
-# TODO: move it to .config/_node/* (split this)
-MACHINE_NAME=$(uname -n)
-NOTEBOOK_NAME=jimi
-
-# machine differences
-
-if [[ "${MACHINE_NAME}" == "${NOTEBOOK_NAME}" ]]
-XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=18"
-XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #555953"
-I3_CONFIG_DEPENDED="~/.config/i3/config.notebook"
-# Xresources theme from ~/.config/Xresources
-XTHEME="best/black_purple"
-else
-XRESOURSES_XTERM_FONT="xterm*faceName: terminus:pixelsize=22"
-XRESOURSES_XTERM_CURSOR_COLOR="*cursorColor: #785b85"
-I3_CONFIG_DEPENDED="~/.config/i3/config.desktop"
-XTHEME="best/softlaziness"
-fi
-
-# wallpapers settings
-WALLPAPER_PATH="pic/wall/"
+WALLPAPER_PATH="pic/wall"
 # or set explicitly with WALLPAPER="1.jpg"
 WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
+
+SYS_RESOURCES=/etc/X11/xinit/.Xresources
+SYS_MODMAP=/etc/X11/xinit/.Xmodmap
+USER_RESOURCES=~/.Xresources
+USER_NODE_RESOURCES=${NODE_PATH}/.Xresources
+USER_NODE_THEME=${NODE_PATH}/.Xtheme
+
+I3_CONFIG=~/.config/i3/config
+I3_NODE_CONFIG=${NODE_PATH}/.config/i3/config
+
+DEFAULT_SESSION=i3
 
 # do not want it @ home
 mv .Xauthority /tmp/
 export XAUTHORITY=/tmp/.Xauthority
-
-# merge xresources in
-xrdb -merge <<EOF
-Xft.dpi: 96
-Xft.hinting: true
-Xft.hintstyle: hintslight
-Xft.antialias: true
-Xft.rgba: rgb
-
-dzen2.font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-dzen2.background: black
-dzen2.foreground: #858585
-
-${XRESOURSES_XTERM_FONT}
-${XRESOURSES_XTERM_CURSOR_COLOR}
-xterm*saveLines: 2048
-xterm*scrollBar: off
-xterm*rightScrollBar: off
-
-! True: specify that jump scrolling should be used. When receiving lots of lines, urx
-URxvt*jumpScroll:              false
-URxvt*skipScroll:              false
-URxvt*font:                    -*-terminus-medium-*-*-*-22-*-*-*-*-*-*-*
-URxvt*scrollBar:               false
-URxvt*saveLines:               65535
-URxvt*cursorBlink:             true
-URxvt.keysym.Control-Up:       \033[1;5A
-URxvt.keysym.Control-Down:     \033[1;5B
-URxvt.keysym.Control-Left:     \033[1;5D
-URxvt.keysym.Control-Right:    \033[1;5C
-URxvt.scrollTtyOutput:         false
-URxvt.scrollTtyKeypress:       true
-URxvt.scrollWithBuffer:                true
-
-! Set scrollbar style to rxvt, plain, next or xterm. plain is the authors favourite.
-! URxvt*scrollstyle: mode
-
-! Set the scrollbar width in pixels.
-! URxvt*thickness: number
-EOF
 
 # start some awful programs dbus/systemd sessions
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
@@ -88,20 +35,30 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-[[ -f ~/.config/Xresources/${XTHEME} ]] &&
-	xrdb -merge ~/.config/Xresources/${XTHEME} &
+# xrdb merges
+[[ -f "${SYS_RESOURCES}" ]] &&
+	xrdb -merge "${SYS_RESOURCES}"
+[[ -f "${SYS_MODMAP}" ]] &&
+	xmodmap "${SYS_MODMAP}"
+[[ -f "${USER_RESOURCES}" ]] &&
+	xrdb -merge "${USER_RESOURCES}"
+[[ -f "${USER_NODE_RESOURCES}" ]] &&
+	xrdb -merge "${USER_NODE_RESOURCES}"
+[[ -f "${USER_NODE_THEME}" ]] &&
+	xrdb -merge "${USER_NODE_THEME}"
 
-[[ -f "${WALLPAPER_PATH}${WALLPAPER}" ]] &&
-	set_wallpaper "${WALLPAPER_PATH}${WALLPAPER}"
+[[ -f "${WALLPAPER_PATH}/${WALLPAPER}" ]] &&
+	set_wallpaper "${WALLPAPER_PATH}/${WALLPAPER}"
 
-DEFAULT_SESSION=i3
 case $1 in
 i3)
-	I3_TMP_CFG="/tmp/i3.config.$(whoami)"
+	I3_TMP="/tmp/i3.config.$(whoami)" # per-user
 
-	cp "${I3_CONFIG_DEPENDED}" "${I3_TMP_CFG}"
-	cat ~/.config/i3/config >> "${I3_TMP_CFG}"
-	exec i3 -c "${I3_TMP_CFG}"
+	[[ -f "${I3_NODE_CONFIG}" ]] &&
+		cat "${I3_NODE_CONFIG}" >> "${I3_TMP}"
+	[[ -f "${I3_CONFIG}" ]] &&
+		cat "${I3_CONFIG}" >> "${I3_TMP}"
+	exec i3 -c "${I3_TMP}"
 	;;
 *)
 	exec "$DEFAULT_SESSION"
