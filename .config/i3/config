@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# Machine-depended options are inside ~/.config/i3/config.machine
+# Node-depended options are inside ~/.config/_node/<name>/.config/i3/config
 # They will prepend this config before i3 run
 
 # Font for window titles. Will also be used by the bar unless a different font

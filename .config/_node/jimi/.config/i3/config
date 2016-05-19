@@ -13,13 +13,13 @@ bindsym $mod+d exec cat ~/.config/dmenu/commands | \
 	-nb \#000000 -nf \#858585 -sb \#785b85 -sf \#ffffff | \
 	xargs -0 bash -c
 
-exec conky -c ~/.config/i3/bars/notebook.bottombar_conkyrc | \
+exec conky -c ~/.config/_node/jimi/.config/i3/bars/bottombar_conkyrc | \
 	dzen2 -dock -p -ta r -y -1 -e 'button3=;'
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	status_command i3status -c ~/.config/i3/bars/notebook.topbar_i3status.conf
+	status_command i3status -c ~/.config/_node/jimi/i3/bars/topbar_i3status.conf
 	position top
 	font xft: terminus 10
 	workspace_buttons yes
