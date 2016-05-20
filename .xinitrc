@@ -18,9 +18,6 @@ USER_RESOURCES=~/.Xresources
 USER_NODE_RESOURCES=${NODE_PATH}/.Xresources
 USER_NODE_THEME=${NODE_PATH}/.Xtheme
 
-I3_CONFIG=~/.config/i3/config
-I3_NODE_CONFIG=${NODE_PATH}/.config/i3/config
-
 DEFAULT_SESSION=i3
 
 # do not want it @ home
@@ -52,16 +49,9 @@ fi
 
 case $1 in
 i3)
-	# Note, that this way re-read config in i3 will not work.
-	# FIXME: add this to generic i3 config (read docs).
-	I3_TMP="/tmp/i3.config.$(whoami)" # per-user
+	I3_CONFIG="$(~/.config/i3/make_config.sh)"
 
-	echo > "${I3_TMP}"
-	[[ -f "${I3_NODE_CONFIG}" ]] &&
-		cat "${I3_NODE_CONFIG}" >> "${I3_TMP}"
-	[[ -f "${I3_CONFIG}" ]] &&
-		cat "${I3_CONFIG}" >> "${I3_TMP}"
-	exec i3 -c "${I3_TMP}"
+	exec i3 -c "${I3_CONFIG}"
 	;;
 *)
 	exec "$DEFAULT_SESSION"
