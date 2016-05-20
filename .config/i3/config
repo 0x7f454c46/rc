@@ -165,5 +165,5 @@ exec dunst
 # screen autolocking
 exec xautolock -time 7 -detectsleep			\
 	-locker "i3lock --dpms --show-failed-attempts"	\
-	-notify 30 notifier "notify-send -u critical -t 10000 -- 'LOCKING'"
+	-notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING'"
 bindsym $mod+Shift+equal exec i3lock -f -d
