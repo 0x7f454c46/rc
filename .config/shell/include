@@ -6,7 +6,7 @@ NODE_PATH=~/.config/_node/${NODE_NAME}
 
 function set_wallpaper()
 {
-	hsetroot -fill "$1"
+	feh --bg-max "$1"
 }
 
 function set_wallpaper_two_monitors()
