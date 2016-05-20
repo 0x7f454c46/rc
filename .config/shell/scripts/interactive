@@ -19,3 +19,5 @@ function mount_smb()
 		echo "Can't mount \`smbnetfs\`, error: $?"
 }
 
+source ~/.config/shell/scripts/qemu/aarch64_vm
+source ~/.config/shell/scripts/qemu/x86_64_vm
