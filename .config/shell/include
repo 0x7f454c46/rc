@@ -1,5 +1,6 @@
 #!/bin/bash
-# This should be included from bash scripts
+# This should be included from bash scripts.
+# May be also usefull for interactive shell.
 
 NODE_NAME=$(cat ~/.config/.node_name)
 NODE_PATH=~/.config/_node/${NODE_NAME}
@@ -16,21 +17,5 @@ function set_wallpaper_two_monitors()
 	second="${1%.*}-1.${1#*.}"
 	feh --bg-scale "$first" --bg-scale "$second"
 	rm "$first" "$second"
-}
-
-function pipes()
-{
-	~/code/scripts/pipes.sh -p3 -r6000
-}
-
-function invaiders()
-{
-	~/code/scripts/invaiders.sh
-}
-
-function mount_smb()
-{
-	mkdir -p /tmp/samba/
-	smbnetfs -o direct_io,readdir_ino /tmp/samba/
 }
 

@@ -61,3 +61,6 @@ disown
 
 [[ -f ~/.config/shell/include ]] &&
 	source ~/.config/shell/include
+
+[[ -f ~/.config/shell/commands ]] &&
+	source ~/.config/shell/commands

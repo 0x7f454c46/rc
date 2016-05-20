@@ -1,0 +1,21 @@
+#!/bin/bash
+# This should be exported from interactive shell.
+# Those exports are for launching by hands, not for scripts.
+
+function pipes()
+{
+	~/code/scripts/pipes.sh -p3 -r6000
+}
+
+function invaiders()
+{
+	~/code/scripts/invaiders.sh
+}
+
+function mount_smb()
+{
+	mkdir -p /tmp/samba/
+	smbnetfs -o direct_io,readdir_ino /tmp/samba/ ||		\
+		echo "Can't mount \`smbnetfs\`, error: $?"
+}
+
