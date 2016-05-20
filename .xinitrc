@@ -49,13 +49,19 @@ fi
 [[ -f "${WALLPAPER_PATH}/${WALLPAPER}" ]] &&
 	set_wallpaper "${WALLPAPER_PATH}/${WALLPAPER}"
 
-case $1 in
-i3)
-	I3_CONFIG="$(~/.config/i3/make_config.sh)"
+# $1 - name of window manager
+# Will exec and never return if there is such wm.
+# Returns if there is no such wm.
+function exec_wm()
+{
+	case $1 in
+	i3)
+		I3_CONFIG="$(~/.config/i3/make_config.sh)"
 
-	exec i3 -c "${I3_CONFIG}"
-	;;
-*)
-	exec "$DEFAULT_SESSION"
-	;;
-esac
+		exec i3 -c "${I3_CONFIG}"
+		;;
+	esac
+}
+
+exec_wm
+exec_wm "${DEFAULT_SESSION}"
