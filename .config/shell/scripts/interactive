@@ -4,12 +4,12 @@
 
 function pipes()
 {
-	~/code/scripts/pipes.sh -p3 -r6000
+	~/.config/shell/scripts/fun/pipes.sh -p3 -r6000
 }
 
 function invaiders()
 {
-	~/code/scripts/invaiders.sh
+	~/.config/shell/scripts/fun/invaiders.sh
 }
 
 function mount_smb()

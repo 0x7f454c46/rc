@@ -4,7 +4,9 @@
 #
 # Executed by startx (run your window manager from here)
 
-# to use script commands here, i.e: set_wallpaper
+[[ -f ~/.config/shell/utils ]] &&
+	source ~/.config/shell/utils
+
 [[ -f ~/.config/shell/include ]] &&
 	source ~/.config/shell/include
 
