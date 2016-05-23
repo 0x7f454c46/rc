@@ -19,5 +19,11 @@ function mount_smb()
 		echo "Can't mount \`smbnetfs\`, error: $?"
 }
 
+# thanks, reddit
+function mkcd()
+{
+	mkdir -p "$1" && cd "$1"
+}
+
 source ~/.config/shell/scripts/qemu/aarch64_vm
 source ~/.config/shell/scripts/qemu/x86_64_vm
