@@ -10,3 +10,5 @@
 	abbrevCommit = true
 [mergetool]
 	keepBackup = false
+[alias]
+	contrib = !bash ~/.config/shell/scripts/git-contrib.sh
