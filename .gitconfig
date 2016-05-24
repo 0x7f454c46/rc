@@ -1,0 +1,12 @@
+[include]
+	path = ~/.gitconfig_node
+[color]
+	ui = true
+[merge]
+	tool = vimdiff
+[core]
+	abbrev = 12
+[log]
+	abbrevCommit = true
+[mergetool]
+	keepBackup = false
