@@ -57,13 +57,18 @@ TOTAL_DEL=0
 red='\E[31m'
 green='\E[32m'
 
+function git_numstat()
+{
+	git log --numstat --pretty='' "$@"
+}
+
 while read adds dels filename
 do
 	INSERTIONS[${filename}]=$((INSERTIONS[${filename}] += adds))
 	DELETIONS[${filename}]=$((DELETIONS[${filename}] += dels))
 	TOTAL_INS=$((TOTAL_INS += adds))
 	TOTAL_DEL=$((TOTAL_DEL += dels))
-done <<< "$(git log --numstat --pretty='' $@)"
+done <<< "$(git_numstat "$@")"
 
 echo -e "Ins\tDels\tFilename"
 
