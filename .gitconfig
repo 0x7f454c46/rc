@@ -1,14 +1,28 @@
 [include]
 	path = ~/.gitconfig_node
+# credential cache for non-ssh (https) accesses
+[credential]
+	helper = cache
 [color]
 	ui = true
+[column]
+	ui = auto row
+	branch = auto row
+[diff]
+	tool = vimdiff
+# launch difftool without a prompt
+[difftool]
+	prompt = false
 [merge]
 	tool = vimdiff
 [core]
+	editor = vim
+	pager = less ${LESS} --LINE-NUMBERS
 	abbrev = 12
 [log]
 	abbrevCommit = true
 [mergetool]
+	prompt = false
 	keepBackup = false
 [alias]
 	contrib = !bash ~/.config/shell/scripts/git-contrib.sh
