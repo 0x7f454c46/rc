@@ -69,6 +69,7 @@ autocmd BufReadPost *
 " backspace and space to wrap between lines
 set whichwrap=b,s
 " show tabs as >--- and trailing spaces as - with set list option
+set list
 set listchars=tab:>-,trail:-
 " set spellchecking
 setlocal spelllang=ru_yo,en_us
