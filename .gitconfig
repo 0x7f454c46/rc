@@ -27,3 +27,7 @@
 	keepBackup = false
 [alias]
 	contrib = !bash ~/.config/shell/scripts/git-contrib.sh
+[commit]
+	verbose = true
+[format]
+	signoff = true
