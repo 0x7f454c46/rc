@@ -21,6 +21,7 @@
 	abbrev = 12
 [log]
 	abbrevCommit = true
+	decorate = auto
 [mergetool]
 	prompt = false
 	keepBackup = false
