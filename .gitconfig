@@ -31,3 +31,5 @@
 	verbose = true
 [format]
 	signoff = true
+[sendemail]
+	cccmd = ~/.config/shell/scripts/git-cc-cmd.sh
