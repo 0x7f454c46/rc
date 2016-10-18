@@ -1,0 +1,110 @@
+#!/bin/bash
+
+DISK_LOCATION="${HOME}/rootfs/virt-builder"
+
+function check_virt_builder()
+{
+	type virt-builder 2>&1 > /dev/null
+	if [[ $? -eq 0 ]] ; then
+		echo y
+	else
+		echo n
+		echo "Install virt-builder (libguestfs)" 1>&2
+	fi
+}
+
+# $1 - arch
+# $2 - kernel path
+function touch_arch()
+{
+	pushd  "${DISK_LOCATION}" > /dev/null
+	local PWD="$(pwd)"
+	local FEDORA_VER=fedora-24
+
+	if [[ ${1} = ppc64le ]] ; then
+		FEDORA_VER=fedora-23
+	fi
+
+	if [[ ! -e "${1}.img" ]] ; then
+		virt-builder --arch ${1} ${FEDORA_VER} -o "${1}.img" \
+			--size 20G --root-password password:1q2w3e 1>&2
+	fi
+
+	if [[ ! -e "${2}" ]] ; then
+		virt-builder --get-kernel "${1}.img" 1>&2
+		mv ./initramfs-*.${1}.img "${1}-initramfs.img"
+		mv ./vmlinuz-*.${1} "${1}-vmlinuz"
+		echo -n "-kernel ${PWD}/${1}-vmlinuz "
+		echo -n "-initrd ${PWD}/${1}-initramfs.img"
+	else
+		echo -n "-kernel ${2}"
+	fi
+	popd > /dev/null
+}
+
+function vm_aarch64_debug()
+{
+	local QEMU_BIN="qemu-system-aarch64"
+	local KERNEL_LOCATION="${HOME}/kernel/linux/arch/arm64/boot"
+	local KERNEL="${KERNEL_LOCATION}/Image"
+	local CMDLINE=""
+	local DISK=aarch64.img
+
+	if [[ $(check_virt_builder) == n ]] ; then
+		return
+	fi
+
+	local KERNEL_PARAM="$(touch_arch aarch64 ${KERNEL})"
+	if [[ -n "${KERNEL_PARAM}" ]] ; then
+		local CMDLINE="root=/dev/vda5 rw console=ttyAMA0"
+	fi
+
+	${QEMU_BIN} ${KERNEL_PARAM}			\
+		-append "${CMDLINE}"			\
+		-drive file="$DISK_LOCATION/$DISK",format=raw \
+		-boot c					\
+		-m 1024					\
+		-localtime				\
+		-name "debug_vm_aarch64"		\
+		-netdev user,id=unet -device virtio-net-device,netdev=unet \
+		-nographic				\
+		-smp cpus=1				\
+		-gdb tcp::1236				\
+		-cpu cortex-a57				\
+		-machine type=virt			\
+		$@
+}
+
+function vm_x86_64_debug()
+{
+
+	local QEMU_BIN="qemu-system-x86_64"
+	local KERNEL_LOCATION="${HOME}/kernel/linux/arch/x86_64/boot"
+	local KERNEL="${KERNEL_LOCATION}/bzImage"
+	local CMDLINE=""
+	local DISK="x86_64.img"
+
+	if [[ $(check_virt_builder) == n ]] ; then
+		return
+	fi
+
+	local KERNEL_PARAM="$(touch_arch x86_64 ${KERNEL})"
+	if [[ -n "${KERNEL_PARAM}" ]] ; then
+		local CMDLINE="root=/dev/sda3 rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
+	fi
+
+	${QEMU_BIN} ${KERNEL_PARAM}			\
+		-append "${CMDLINE}"			\
+		-drive file="$DISK_LOCATION/$DISK",format=raw \
+		-boot c					\
+		-m 1024					\
+		-localtime				\
+		-name "debug_vm_x86"			\
+		-net nic -net user			\
+		-nographic				\
+		-smp cpus=4				\
+		-enable-kvm				\
+		-gdb tcp::1235				\
+		$@
+}
+

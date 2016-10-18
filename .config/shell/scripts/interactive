@@ -32,3 +32,4 @@ function mirror()
 
 source ~/.config/shell/scripts/qemu/aarch64_vm
 source ~/.config/shell/scripts/qemu/x86_64_vm
+source ~/.config/shell/scripts/qemu/qemu_helpers
