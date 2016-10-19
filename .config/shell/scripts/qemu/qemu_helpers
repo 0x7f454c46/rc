@@ -75,6 +75,70 @@ function vm_aarch64_debug()
 		$@
 }
 
+function vm_armv7l_debug()
+{
+	local QEMU_BIN="qemu-system-arm"
+	local KERNEL_LOCATION="${HOME}/kernel/linux/arch/arm/boot"
+	local KERNEL="${KERNEL_LOCATION}/Image"
+	local CMDLINE=""
+	local DISK=armv7l.img
+
+	if [[ $(check_virt_builder) == n ]] ; then
+		return
+	fi
+
+	local KERNEL_PARAM="$(touch_arch armv7l ${KERNEL})"
+	if [[ -n "${KERNEL_PARAM}" ]] ; then
+		local CMDLINE="root=/dev/vda5 rw console=ttyAMA0"
+	fi
+
+	${QEMU_BIN} ${KERNEL_PARAM}			\
+		-append "${CMDLINE}"			\
+		-drive file="$DISK_LOCATION/$DISK",format=raw \
+		-boot c					\
+		-m 1024					\
+		-localtime				\
+		-name "debug_vm_armv7l"			\
+		-netdev user,id=unet -device virtio-net-device,netdev=unet \
+		-nographic				\
+		-smp cpus=1				\
+		-gdb tcp::1237				\
+		-machine type=virt			\
+		$@
+}
+
+function vm_ppc64le_debug()
+{
+
+	local QEMU_BIN="qemu-system-ppc64"
+	local KERNEL_LOCATION="${HOME}/kernel/linux/arch/powerpc/boot"
+	local KERNEL="${KERNEL_LOCATION}/zImage"
+	local CMDLINE=""
+	local DISK="ppc64le.img"
+
+	if [[ $(check_virt_builder) == n ]] ; then
+		return
+	fi
+
+	local KERNEL_PARAM="$(touch_arch ppc64le ${KERNEL})"
+	if [[ -n "${KERNEL_PARAM}" ]] ; then
+		local CMDLINE="root=/dev/sda3 rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
+	fi
+
+	${QEMU_BIN} ${KERNEL_PARAM}			\
+		-append "${CMDLINE}"			\
+		-drive file="$DISK_LOCATION/$DISK",format=raw \
+		-boot c					\
+		-m 1024					\
+		-localtime				\
+		-name "debug_vm_ppc64le"		\
+		-net nic -net user			\
+		-nographic				\
+		-smp cpus=4				\
+		-gdb tcp::1238				\
+		$@
+}
+
 function vm_x86_64_debug()
 {
 
