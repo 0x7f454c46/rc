@@ -39,10 +39,15 @@ function touch_arch()
 	fi
 
 	if [[ ! -e "${KERNEL_PATH}" ]] ; then
+		ARCH_FILES="${1}"
 		echo "${KERNEL_PATH} does not exist - launching fedora's kernel" 1>&2
+		if [[ ${1} = armv7l ]] ; then
+			ARCH_FILES=armv7hl
+		fi
+
 		virt-builder --get-kernel "${1}.img" 1>&2
-		mv ./initramfs-*.${1}.img "${1}-initramfs.img"
-		mv ./vmlinuz-*.${1} "${1}-vmlinuz"
+		mv ./initramfs-*.${ARCH_FILES}.img "${1}-initramfs.img"
+		mv ./vmlinuz-*.${ARCH_FILES} "${1}-vmlinuz"
 		echo -n "-kernel ${PWD}/${1}-vmlinuz "
 		echo -n "-initrd ${PWD}/${1}-initramfs.img"
 	else
