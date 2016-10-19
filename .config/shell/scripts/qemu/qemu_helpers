@@ -104,7 +104,7 @@ function vm_armv7l_debug()
 
 	local KERNEL_PARAM="$(touch_arch armv7l ${KERNEL})"
 	if [[ -n "${KERNEL_PARAM}" ]] ; then
-		local CMDLINE="root=/dev/vda5 rw console=ttyAMA0"
+		local CMDLINE="root=/dev/vda3 rw console=ttyAMA0"
 	fi
 
 	${QEMU_BIN} ${KERNEL_PARAM}			\
