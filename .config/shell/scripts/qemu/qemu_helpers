@@ -31,12 +31,14 @@ function touch_arch()
 	fi
 
 	if [[ ! -e "${2}" ]] ; then
+		echo "${2} does not exist - launching fedora's kernel" 1>&2
 		virt-builder --get-kernel "${1}.img" 1>&2
 		mv ./initramfs-*.${1}.img "${1}-initramfs.img"
 		mv ./vmlinuz-*.${1} "${1}-vmlinuz"
 		echo -n "-kernel ${PWD}/${1}-vmlinuz "
 		echo -n "-initrd ${PWD}/${1}-initramfs.img"
 	else
+		echo "launching with kernel ${2}" 1>&2
 		echo -n "-kernel ${2}"
 	fi
 	popd > /dev/null
