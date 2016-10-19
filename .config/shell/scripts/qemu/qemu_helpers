@@ -30,6 +30,10 @@ function touch_arch()
 			--size 20G --root-password password:1q2w3e 1>&2
 	fi
 
+	echo "Temporary disabled booting with compiled vmlinuz" 1>&2
+	popd > /dev/null
+	return
+
 	if [[ ! -e "${2}" ]] ; then
 		echo "${2} does not exist - launching fedora's kernel" 1>&2
 		virt-builder --get-kernel "${1}.img" 1>&2
