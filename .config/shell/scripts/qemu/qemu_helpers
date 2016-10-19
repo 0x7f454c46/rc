@@ -74,6 +74,9 @@ function vm_aarch64_debug()
 		local CMDLINE="root=/dev/vda5 rw console=ttyAMA0"
 	fi
 
+	if [[ ${1} = dry-run ]] ; then
+		QEMU_BIN="echo ${QEMU_BIN}"
+	fi
 	${QEMU_BIN} ${KERNEL_PARAM}			\
 		-append "${CMDLINE}"			\
 		-drive file="$DISK_LOCATION/$DISK",format=raw \
@@ -107,6 +110,9 @@ function vm_armv7l_debug()
 		local CMDLINE="root=/dev/vda3 rw console=ttyAMA0"
 	fi
 
+	if [[ ${1} = dry-run ]] ; then
+		QEMU_BIN="echo ${QEMU_BIN}"
+	fi
 	${QEMU_BIN} ${KERNEL_PARAM}			\
 		-append "${CMDLINE}"			\
 		-drive file="$DISK_LOCATION/$DISK",format=raw \
@@ -140,6 +146,9 @@ function vm_ppc64le_debug()
 		local CMDLINE="root=/dev/sda3 rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
 	fi
 
+	if [[ ${1} = dry-run ]] ; then
+		QEMU_BIN="echo ${QEMU_BIN}"
+	fi
 	${QEMU_BIN} ${KERNEL_PARAM}			\
 		-append "${CMDLINE}"			\
 		-drive file="$DISK_LOCATION/$DISK",format=raw \
@@ -172,6 +181,9 @@ function vm_x86_64_debug()
 		local CMDLINE="root=/dev/sda3 rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
 	fi
 
+	if [[ ${1} = dry-run ]] ; then
+		QEMU_BIN="echo ${QEMU_BIN}"
+	fi
 	${QEMU_BIN} ${KERNEL_PARAM}			\
 		-append "${CMDLINE}"			\
 		-drive file="$DISK_LOCATION/$DISK",format=raw \
