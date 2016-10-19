@@ -20,6 +20,7 @@ function touch_arch()
 	pushd  "${DISK_LOCATION}" > /dev/null
 	local PWD="$(pwd)"
 	local FEDORA_VER=fedora-24
+	local KERNEL_PATH="${2}"
 
 	if [[ ${1} = ppc64le ]] ; then
 		FEDORA_VER=fedora-23
@@ -31,19 +32,22 @@ function touch_arch()
 	fi
 
 	echo "Temporary disabled booting with compiled vmlinuz" 1>&2
-	popd > /dev/null
-	return
+	KERNEL_PATH=""
+	if [[ ${1} =~ ^(x86_64|ppc64le) ]] ; then
+		popd > /dev/null
+		return
+	fi
 
-	if [[ ! -e "${2}" ]] ; then
-		echo "${2} does not exist - launching fedora's kernel" 1>&2
+	if [[ ! -e "${KERNEL_PATH}" ]] ; then
+		echo "${KERNEL_PATH} does not exist - launching fedora's kernel" 1>&2
 		virt-builder --get-kernel "${1}.img" 1>&2
 		mv ./initramfs-*.${1}.img "${1}-initramfs.img"
 		mv ./vmlinuz-*.${1} "${1}-vmlinuz"
 		echo -n "-kernel ${PWD}/${1}-vmlinuz "
 		echo -n "-initrd ${PWD}/${1}-initramfs.img"
 	else
-		echo "launching with kernel ${2}" 1>&2
-		echo -n "-kernel ${2}"
+		echo "launching with kernel ${KERNEL_PATH}" 1>&2
+		echo -n "-kernel ${KERNEL_PATH}"
 	fi
 	popd > /dev/null
 }
