@@ -2,11 +2,11 @@
 
 xterm*cursorColor: #555953
 xterm*background: #1a1315
-xterm*foreground: #5e8051
+xterm*foreground: #5b8849
 
 URxvt*cursorColor: #555953
 URxvt*background: #1a1315
-URxvt*foreground: #5e8051
+URxvt*foreground: #5b8849
 
 *color0:     #1c1709
 *color8:     #4f4939
