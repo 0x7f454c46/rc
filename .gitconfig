@@ -32,4 +32,4 @@
 	signoff = true
 [sendemail]
 	cccmd = ~/.config/shell/scripts/git-cc-cmd.sh
-	cccover = true
+	cccover = false
