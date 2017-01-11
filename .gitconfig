@@ -33,3 +33,4 @@
 [sendemail]
 	cccmd = ~/.config/shell/scripts/git-cc-cmd.sh
 	cccover = false
+	suppresscc = body

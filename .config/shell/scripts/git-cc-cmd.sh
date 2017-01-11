@@ -2,7 +2,7 @@
 
 function grep_cc()
 {
-	sed -n 's/^[cC][cC]:[[:blank:]]*\([[:graph:]].*\)/\1/p'
+	sed -n 's/^[cC][cC]:[[:blank:]]*\([[:graph:]][^#]*\).*/\1/p'
 }
 function grep_by()
 {
@@ -18,5 +18,6 @@ if [[ $(basename "${1}") =~ ^0000- ]] ; then
 else
 	cat $(dirname "${1}")/0000-*.patch | grep_cc
 	cat "${1}" | grep_by
+	cat "${1}" | grep_cc
 fi
 
