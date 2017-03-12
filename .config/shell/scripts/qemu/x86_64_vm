@@ -8,9 +8,9 @@ function qemu_x86_64_debug()
 	local QEMU_BIN="qemu-system-x86_64"
 	local KERNEL_LOCATION="$(echo ~)/kernel/linux/arch/x86_64/boot"
 	local KERNEL="bzImage"
-	local DISK_LOCATION="$(echo ~)/buildroot/buildroot-x86_64/output/images"
-	local DISK="rootfs.ext2"
-	local CMDLINE="root=/dev/sda rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
+	local DISK_LOCATION="$(echo ~)/rootfs"
+	local DISK="fedora-25.img"
+	local CMDLINE="root=/dev/sda2 rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
 
 	$QEMU_BIN -kernel "$KERNEL_LOCATION/$KERNEL"	\
 		-hda "$DISK_LOCATION/$DISK"		\
@@ -19,7 +19,7 @@ function qemu_x86_64_debug()
 		-m 1024					\
 		-localtime				\
 		-name "debug_vm_x86"			\
-		-net nic -net user			\
+		-net nic -net user -redir tcp:2222::22	\
 		-nographic				\
 		-smp cpus=4				\
 		-enable-kvm				\
