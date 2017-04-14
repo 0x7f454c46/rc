@@ -1,9 +1,0 @@
-#!/bin/bash
-# This should be exported from interactive shell.
-# Those exports are for launching by hands, not for scripts.
-
-[[ -f ~/.config/shell/scripts/interactive ]] &&
-	source ~/.config/shell/scripts/interactive
-
-[[ -f ~/.config/shell/utils ]] &&
-	source ~/.config/shell/utils

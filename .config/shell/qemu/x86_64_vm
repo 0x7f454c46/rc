@@ -8,9 +8,11 @@ function qemu_x86_64_debug()
 	local QEMU_BIN="qemu-system-x86_64"
 	local KERNEL_LOCATION="$(echo ~)/kernel/linux/arch/x86_64/boot"
 	local KERNEL="bzImage"
-	local DISK_LOCATION="$(echo ~)/buildroot/buildroot-x86_64/output/images"
-	local DISK="rootfs.ext2"
-	local CMDLINE="root=/dev/sda rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
+	local DISK_LOCATION="/mnt/hdd/libvirt/images"
+	local DISK="x86_64-fedora-24.img"
+	#local DISK="x86_64-debian-x32.qcow2"
+	local CMDLINE="root=/dev/sda3 rw console=ttyS0 earlyprintk=serial,ttyS0,115200 vsyscall=none"
+	#local CMDLINE="root=/dev/sda1 rw console=ttyS0 earlyprintk=serial,ttyS0,115200"
 
 	$QEMU_BIN -kernel "$KERNEL_LOCATION/$KERNEL"	\
 		-hda "$DISK_LOCATION/$DISK"		\

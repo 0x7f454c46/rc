@@ -25,12 +25,12 @@
 	prompt = false
 	keepBackup = false
 [alias]
-	contrib = !bash ~/.config/shell/scripts/git-contrib.sh
+	contrib = !bash ~/.config/shell/git-contrib.sh
 [commit]
 	verbose = true
 [format]
 	signoff = true
 [sendemail]
-	cccmd = ~/.config/shell/scripts/git-cc-cmd.sh
+	cccmd = ~/.config/shell/git-cc-cmd.sh
 	cccover = false
 	suppresscc = body

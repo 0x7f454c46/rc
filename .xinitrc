@@ -4,9 +4,6 @@
 #
 # Executed by startx (run your window manager from here)
 
-[[ -f ~/.config/shell/utils ]] &&
-	source ~/.config/shell/utils
-
 [[ -f ~/.config/shell/include ]] &&
 	source ~/.config/shell/include
 
