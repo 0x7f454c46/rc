@@ -39,6 +39,8 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export LESSHISTFILE=/tmp/lesshst
 export SUDO_ASKPASS=/usr/lib/ssh/ssh-askpass
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk # for Android building
+export LIBVIRT_DEFAULT_URI="qemu:///system"
+export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
 
 ## set console font in tty
 # TODO: remove, when systemd start working as init system, not as a web-server
