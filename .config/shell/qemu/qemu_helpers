@@ -32,11 +32,11 @@ function touch_arch()
 	fi
 
 	echo "Temporary disabled booting with compiled vmlinuz" 1>&2
-	KERNEL_PATH=""
-	if [[ ${1} =~ ^(x86_64|ppc64le) ]] ; then
-		popd > /dev/null
-		return
-	fi
+#	KERNEL_PATH=""
+#	if [[ ${1} =~ ^(x86_64|ppc64le) ]] ; then
+#		popd > /dev/null
+#		return
+#	fi
 
 	if [[ ! -e "${KERNEL_PATH}" ]] ; then
 		ARCH_FILES="${1}"
@@ -158,8 +158,10 @@ function vm_ppc64le_debug()
 		-name "debug_vm_ppc64le"		\
 		-net nic -net user			\
 		-nographic				\
-		-smp cpus=4				\
+		-smp cpus=2				\
 		-gdb tcp::1238				\
+		-M pseries				\
+		-cpu POWER8				\
 		$@
 }
 

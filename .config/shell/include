@@ -7,3 +7,7 @@
 NODE_NAME=$(cat ~/.config/.node_name)
 NODE_PATH=~/.config/_node/${NODE_NAME}
 
+[[ -f ~/.config/shell/utils ]] &&
+	source ~/.config/shell/utils
+
+source ~/.config/shell/qemu/*
