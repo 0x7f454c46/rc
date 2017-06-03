@@ -7,7 +7,8 @@
 
 alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
-alias mount.vfat='mount -t vfat -o iocharset=utf8,rw,gid=100'
+alias mount.vfat='sudo mount -t vfat -o iocharset=utf8,rw,gid=100'
+alias mount.ssd='sudo mount -o noatime,discard'
 PS1='[\u@\h \W]\$ '
 
 HISTSIZE=100000
