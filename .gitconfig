@@ -29,7 +29,7 @@
 [commit]
 	verbose = true
 [format]
-	signoff = true
+	signoff = false
 [sendemail]
 	cccmd = ~/.config/shell/git-cc-cmd.sh
 	cccover = false
