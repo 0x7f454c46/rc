@@ -2,6 +2,11 @@
 # Those functions may be usefull in interactive shell and
 # in other configs/scripts/daemons.
 
+function patches_subj()
+{
+	grep Subject -R "$1" | sed 's/.*Subject: \(.*\)/\1/g'
+}
+
 function set_wallpaper()
 {
 	feh --bg-max "$1"
