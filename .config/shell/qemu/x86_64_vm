@@ -21,7 +21,7 @@ function qemu_x86_64_debug()
 		-m 1024					\
 		-localtime				\
 		-name "debug_vm_x86"			\
-		-net nic -net user			\
+		-net nic -net user -redir tcp:2222::22	\
 		-nographic				\
 		-smp cpus=4				\
 		-enable-kvm				\

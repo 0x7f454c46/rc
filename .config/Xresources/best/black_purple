@@ -6,6 +6,11 @@ xterm*background: #2f0d30
 ! #370039
 xterm*foreground: #928ff8
 
+URxvt*cursorColor: #785b85
+URxvt*background: #2f0d30
+! #370039
+URxvt*foreground: #928ff8
+
 ! --- standard colors ---
 
 ! black
