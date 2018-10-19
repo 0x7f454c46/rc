@@ -16,7 +16,7 @@ HISTFILESIZE=100000
 HISTCONTROL=erasedups
 export EDITOR=vim
 export SUDO_EDITOR=vim
-export BROWSER=dwb
+export BROWSER=firefox
 export PAGER="less"
 
 # fix for urxvt, which is not known by ssh nodes in termcap
