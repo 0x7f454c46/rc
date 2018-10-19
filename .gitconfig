@@ -1,3 +1,5 @@
+[user]
+	name = Dmitry Safonov
 [include]
 	path = ~/.gitconfig_node
 # credential cache for non-ssh (https) accesses
