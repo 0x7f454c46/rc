@@ -9,7 +9,8 @@
 
 WALLPAPER_PATH="pic/wall"
 # or set explicitly with WALLPAPER="1.jpg"
-WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
+[[ -f "${WALLPAPER_PATH}" ]] &&
+	WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
 
 SYS_RESOURCES=/etc/X11/xinit/.Xresources
 SYS_MODMAP=/etc/X11/xinit/.Xmodmap
