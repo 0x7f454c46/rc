@@ -14,14 +14,14 @@ else
 	if isdirectory('~/.vim/backup') == 0
 		:silent !mkdir -p ~/.vim/backup > /dev/null 2>&1
 	endif
-	set backupdir=~/.vim/backup
+	set backupdir=~/.vim/backup/
 
 	" keep an undo file (undo changes after closing)
 	set undofile
 	if isdirectory('~/.vim/undo') == 0
 		:silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 	endif
-	set undodir=~/.vim/undo//
+	set undodir=~/.vim/undo/
 endif
 
 " save swp files in /tmp/vim-swp
