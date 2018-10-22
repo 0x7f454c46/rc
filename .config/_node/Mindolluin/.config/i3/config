@@ -1,6 +1,5 @@
 # Cmd key as mod
-#set $mod Mod4
-set $mod Mod1
+set $mod Mod4
 
 # class			border	backgr.	text	indicator
 client.focused		#5e8051 #5e8051 #ffffff #5e8051
