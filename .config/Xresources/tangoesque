@@ -1,5 +1,9 @@
-*background:  #000000
-*foreground:  #aaaaaa
+! --- special colors ---
+xterm*background: #000000
+xterm*foreground: #aaaaaa
+URxvt*background: #000000
+URxvt*foreground: #aaaaaa
+
 ! Black
 *color0:      #202020
 *color8:      #606060

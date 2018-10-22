@@ -1,9 +1,9 @@
-!================================
-! tango theme
-!================================
+! --- special colors ---
+xterm*background: #000000
+xterm*foreground: #babdb6
+URxvt*background: #000000
+URxvt*foreground: #babdb6
 
-*background:              #000000
-*foreground:              #babdb6
 *color0:                  #2e3436
 *color1:                  #cc0000
 *color2:                  #4e9a06
@@ -20,5 +20,3 @@
 *color13:                 #ad7fa8
 *color14:                 #34e2e2
 *color15:                 #eeeeec
-
-! vim: ai:si:et:ts=4:sw=4:ft=xdefaults:
