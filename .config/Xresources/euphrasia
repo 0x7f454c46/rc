@@ -1,11 +1,10 @@
-! vim:ft=xdefaults
 ! euphrasia v. 1.0
 ! by bohoomil
 
 ! Xresources
-!URxvt*background:  #000C1A
-!URxvt*foreground:  #ACB4BF
-!URxvt*cursorColor: #335A80
+URxvt*background:  #000C1A
+URxvt*foreground:  #ACB4BF
+URxvt*cursorColor: #335A80
 
 ! fg/bg for Xorg apps
 *background:    #CFCFD9

@@ -55,6 +55,9 @@
 
 
 
+URxvt*foreground:     #fff
+URxvt*background:     #010101
+URxvt*cursorColor:    #e5e5e5
 *foreground:     #fff
 *background:     #010101
 *colorBD:        #7e6449

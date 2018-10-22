@@ -1,5 +1,6 @@
 URxvt*foreground: #CCCCCC
 URxvt*background: #111111
+
 !black
 *color0: #222222
 *color8: #666666
