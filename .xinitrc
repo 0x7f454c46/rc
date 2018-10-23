@@ -7,7 +7,6 @@
 [[ -f ~/.config/shell/include ]] &&
 	source ~/.config/shell/include
 
-WALLPAPER_PATH=~/pic/wall
 SYS_RESOURCES=/etc/X11/xinit/.Xresources
 SYS_MODMAP=/etc/X11/xinit/.Xmodmap
 USER_RESOURCES=~/.Xresources
@@ -40,9 +39,6 @@ fi
 [[ -f "${USER_NODE_THEME}" ]] &&
 	xrdb -merge "${USER_NODE_THEME}"
 
-[[ -d "${WALLPAPER_PATH}" ]] &&
-	set_wallpaper "${WALLPAPER_PATH}"
-
 # $1 - name of window manager
 # Will exec and never return if there is such wm.
 # Returns if there is no such wm.
@@ -57,5 +53,6 @@ function exec_wm()
 	esac
 }
 
+./config/shell/set_wallpaper.sh
 exec_wm
 exec_wm "${DEFAULT_SESSION}"
