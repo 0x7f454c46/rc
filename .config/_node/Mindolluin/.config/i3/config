@@ -2,15 +2,15 @@
 set $mod Mod4
 
 # class			border	backgr.	text	indicator
-client.focused		#5e8051 #5e8051 #ffffff #5e8051
+client.focused		#222222 #D23D3D #ffffff #E84F4F
 # client.focused_inactive	#333333	#5f676a	#ffffff	#484e50
 # client.unfocused	#333333	#222222	#888888	#292d2e
 # client.urgent		#2f343a	#900000	#ffffff	#900000
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec cat ~/.config/dmenu/commands | \
-	dmenu -fn "-misc-fixed-*-*-*-*-16-*-*-*-*-*-*-*" \
-	-nb \#000000 -nf \#858585 -sb \#5e8051 -sf \#ffffff | \
+	dmenu -fn "Terminus-16" \
+	-nb \#222222 -nf \#cccccc -sb \#e84f4f -sf \#ffffff | \
 	xargs -0 bash -c
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -22,7 +22,7 @@ bar {
 	workspace_buttons yes
 	tray_output primary
 	colors {
-		focused_workspace #5e8051 #555953 #ffffff
-		statusline #858585
+		focused_workspace #e84f4f #222222 #cccccc
+		statusline #666666
 	}
 }
