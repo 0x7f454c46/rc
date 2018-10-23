@@ -163,7 +163,12 @@ bindsym $mod+r mode "resize"
 # notifications daemon
 exec dunst
 # screen autolocking
-exec xautolock -time 7 -detectsleep			\
-	-locker "i3lock --dpms --show-failed-attempts"	\
+exec xautolock -time 7 -detectsleep					\
+	-locker "i3lock --dpms --tiling --show-failed-attempts --image /tmp/wallpaper.png" \
 	-notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING'"
-bindsym $mod+Shift+equal exec i3lock -f -d
+bindsym $mod+Shift+equal						\
+	exec i3lock -f -d --image /tmp/wallpaper.png --tiling
+bindsym $mod+question							\
+	exec ln -fs "$(find ~/pic/wall -type f | shuf -n 1)" /tmp/wallpaper && \
+	feh --bg-scale /tmp/wallpaper &&				\
+	convert /tmp/wallpaper /tmp/wallpaper.png

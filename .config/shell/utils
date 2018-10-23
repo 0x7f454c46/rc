@@ -9,7 +9,9 @@ function patches_subj()
 
 function set_wallpaper()
 {
-	feh --bg-max "$1"
+	ln -fs "$(find $1 -type f | shuf -n 1)" /tmp/wallpaper &&
+	feh --bg-scale /tmp/wallpaper &&
+	convert /tmp/wallpaper /tmp/wallpaper.png
 }
 
 function set_wallpaper_two_monitors()

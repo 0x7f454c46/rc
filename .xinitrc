@@ -7,11 +7,7 @@
 [[ -f ~/.config/shell/include ]] &&
 	source ~/.config/shell/include
 
-WALLPAPER_PATH="pic/wall"
-# or set explicitly with WALLPAPER="1.jpg"
-[[ -f "${WALLPAPER_PATH}" ]] &&
-	WALLPAPER="$(ls "$WALLPAPER_PATH" -1 | sort --random-sort | head -1)"
-
+WALLPAPER_PATH=~/pic/wall
 SYS_RESOURCES=/etc/X11/xinit/.Xresources
 SYS_MODMAP=/etc/X11/xinit/.Xmodmap
 USER_RESOURCES=~/.Xresources
@@ -44,8 +40,8 @@ fi
 [[ -f "${USER_NODE_THEME}" ]] &&
 	xrdb -merge "${USER_NODE_THEME}"
 
-[[ -f "${WALLPAPER_PATH}/${WALLPAPER}" ]] &&
-	set_wallpaper "${WALLPAPER_PATH}/${WALLPAPER}"
+[[ -d "${WALLPAPER_PATH}" ]] &&
+	set_wallpaper "${WALLPAPER_PATH}"
 
 # $1 - name of window manager
 # Will exec and never return if there is such wm.
