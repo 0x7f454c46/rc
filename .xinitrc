@@ -53,6 +53,6 @@ function exec_wm()
 	esac
 }
 
-./config/shell/set_wallpaper.sh
+./.config/shell/set_wallpaper.sh
 exec_wm
 exec_wm "${DEFAULT_SESSION}"
