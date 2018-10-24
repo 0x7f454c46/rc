@@ -20,7 +20,8 @@ if [[ ${DISP_1} == connected -a ${DISP_2} == connected ]] ; then
 	xrandr --output eDP1 --auto 					\
 		--left-of DP2-1 --output DP2-1 --auto
 		--left-of DP2-2 --output DP2-2 --auto
-	exit 0
 fi
+
+sleep 3 & feh --bg-scale /tmp/wallpaper
 
 exit 0
