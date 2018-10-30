@@ -11,14 +11,14 @@ export DISPLAY=":0"
 DISP_1=$(xrandr --current | grep DP2-1 | awk '{print $2}')
 DISP_2=$(xrandr --current | grep DP2-2 | awk '{print $2}')
 
-xrandr --output eDP1 --auto DP2-1 --off DP2-2 --off
-if [[ ${DISP_1} == connected ]] ; then
+xrandr --output eDP1 --auto --output DP2-1 --off --output DP2-2 --off
+if [[ "${DISP_1}" == connected ]] ; then
 	xrandr --output eDP1 --auto --left-of DP2-1 --output DP2-1 --auto
 fi
 
-if [[ ${DISP_1} == connected -a ${DISP_2} == connected ]] ; then
+if [[ "${DISP_1}" == connected && "${DISP_2}" == connected ]] ; then
 	xrandr --output eDP1 --auto 					\
-		--left-of DP2-1 --output DP2-1 --auto
+		--left-of DP2-1 --output DP2-1 --auto			\
 		--left-of DP2-2 --output DP2-2 --auto
 fi
 

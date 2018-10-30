@@ -12,6 +12,7 @@ SYS_MODMAP=/etc/X11/xinit/.Xmodmap
 USER_RESOURCES=~/.Xresources
 USER_NODE_RESOURCES=${NODE_PATH}/.Xresources
 USER_NODE_THEME=${NODE_PATH}/.Xtheme
+URXVT_KEYSYM=~/.config/Xresources.urxvt
 
 DEFAULT_SESSION=i3
 
@@ -38,6 +39,8 @@ fi
 	xrdb -merge "${USER_NODE_RESOURCES}"
 [[ -f "${USER_NODE_THEME}" ]] &&
 	xrdb -merge "${USER_NODE_THEME}"
+[[ -f "${URXVT_KEYSYM}" ]] &&
+	xrdb -merge "${URXVT_KEYSYM}"
 
 # $1 - name of window manager
 # Will exec and never return if there is such wm.
