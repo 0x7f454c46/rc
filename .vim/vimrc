@@ -41,6 +41,9 @@ set showcmd
 " color search results while typing search query
 set incsearch
 
+" share clipboard(s) with Xorg
+set clipboard^=unnamedplus
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
