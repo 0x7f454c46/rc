@@ -60,6 +60,9 @@ if &t_Co > 2 || has("gui_running")	" if colors available
 	syntax on
 	" highlight matches of the last used search pattern
 	set hlsearch
+	" show trailing whitespace and spaces before a tab:
+	highlight ExtraWhitespace ctermbg=red guibg=red
+	match ExtraWhitespace /\s\+$\| \+\ze\t/
 endif
 
 " This is used after reading any file.
@@ -104,3 +107,7 @@ call vundle#end()
 " indent by filetype
 filetype plugin indent on
 
+" make 'J' work with C comments
+if v:version > 703 || v:version == 703 && has('patch541')
+	set formatoptions+=j
+endif
