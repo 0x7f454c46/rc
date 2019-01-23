@@ -32,6 +32,8 @@
 	verbose = true
 [format]
 	signoff = false
+	# generate cover when there is more than one patch
+	coverLetter = auto
 [sendemail]
 	cccmd = ~/.config/shell/git-cc-cmd.sh
 	cccover = false
