@@ -36,3 +36,5 @@
 	cccmd = ~/.config/shell/git-cc-cmd.sh
 	cccover = false
 	suppresscc = body
+[blame]
+	coloring = highlightRecent
